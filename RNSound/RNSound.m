@@ -206,6 +206,11 @@ RCT_EXPORT_METHOD(prepare
                                                         error:&error];
     } else {
         fileNameUrl = [NSURL URLWithString:fileNameEscaped];
+        
+        if(!fileNameUrl){
+            fileNameUrl = [NSURL fileURLWithPath: fileName];
+        }
+        
         player = [[AVAudioPlayer alloc] initWithContentsOfURL:fileNameUrl
                                                         error:&error];
     }
